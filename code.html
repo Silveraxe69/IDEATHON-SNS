@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>AGENTX - Official Event Landing Page</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#FACC15",
+                        "background-dark": "#020202",
+                        "surface-dark": "#0A0A0A",
+                        "metal-gray": "#1A1A1A",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        :root {
+            --core-glow: rgba(250, 204, 21, 0.4);
+            --core-dim: rgba(40, 40, 40, 0.1);
+        }
+        body {
+            font-family: "Space Grotesk", sans-serif;
+            @apply bg-background-dark text-white overflow-x-hidden;
+        }
+        .hero-pattern {
+            background-image: radial-gradient(circle at 50% 50%, rgba(250, 204, 21, 0.03) 0%, transparent 70%);
+        }
+        .core-container {
+            perspective: 2000px;
+        }
+        .core-toggle:checked ~ .core-sphere {
+            @apply border-primary shadow-[0_0_80px_var(--core-glow)];
+        }
+        .core-toggle:checked ~ .core-sphere .core-inner {
+            @apply bg-primary scale-110 opacity-100;
+        }
+        .core-toggle:checked ~ .core-sphere .orbit-ring {
+            @apply border-primary/40;
+        }
+        .core-toggle:not(:checked) ~ .core-sphere {
+            @apply border-zinc-800 shadow-none grayscale;
+        }
+        .core-toggle:not(:checked) ~ .core-sphere .core-inner {
+            @apply bg-zinc-800 scale-90 opacity-20;
+        }
+        .core-toggle:not(:checked) ~ .core-sphere .orbit-ring {
+            @apply border-zinc-900;
+        }
+        .metallic-finish {
+            background: linear-gradient(135deg, #2a2a2a 0%, #0a0a0a 100%);
+            box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.05), 
+                        inset -2px -2px 5px rgba(0, 0, 0, 0.5);
+        }
+        .orbit-ring {
+            @apply absolute rounded-full border border-dashed transition-all duration-700 ease-in-out;
+        }
+        .section-heading {
+            @apply text-5xl md:text-6xl font-black uppercase tracking-tighter mb-8;
+        }
+        .accent-text {
+            @apply text-primary italic;
+        }
+        .card-base {
+            @apply border border-zinc-900 bg-surface-dark p-8 transition-all hover:border-primary/30;
+        }
+    </style>
+</head>
+
+<body class="transition-colors duration-500">
+    <div class="fixed inset-0 pointer-events-none z-0 hero-pattern"></div>
+    <header class="sticky top-0 z-50 w-full border-b border-white/10 bg-white/5 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-8 h-24 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <img src="./img/logo_college.png" alt="College Logo" class="h-14 w-auto object-contain">
+                <div class="h-10 w-px bg-white/20"></div>
+                <img src="./img/logo_sns.png" alt="SNS Logo" class="h-12 w-auto object-contain">
+            </div>
+            <nav class="hidden md:flex items-center gap-10">
+                <a class="text-sm font-bold uppercase tracking-[0.2em] text-white hover:text-primary transition-colors"
+                    href="#about">About</a>
+                <a class="text-sm font-bold uppercase tracking-[0.2em] text-white hover:text-primary transition-colors"
+                    href="#themes">Themes</a>
+                <a class="text-sm font-bold uppercase tracking-[0.2em] text-white hover:text-primary transition-colors"
+                    href="#phases">Phases</a>
+                <a class="text-sm font-bold uppercase tracking-[0.2em] text-white hover:text-primary transition-colors"
+                    href="#stack">Stack</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5LXsvck5on1Tha6mPrB6vWI1r_oonMO-G6y9gMgqfGesXGQ/viewform?pli=1"
+                    target="_blank"
+                    class="bg-primary text-black px-8 py-3 text-xs font-black uppercase tracking-widest hover:bg-white transition-all shadow-[0_0_20px_rgba(250,204,21,0.3)] hover:shadow-[0_0_30px_rgba(250,204,21,0.5)]">
+                    Register Now
+                </a>
+            </nav>
+        </div>
+    </header>
+    <main class="relative">
+        <section
+            class="min-h-[90vh] flex flex-col lg:flex-row items-center justify-center max-w-7xl mx-auto px-8 gap-12 py-12">
+            <div class="flex-1 space-y-8 z-10 text-center lg:text-left">
+                <div
+                    class="inline-flex items-center gap-3 px-4 py-2 border border-zinc-800 bg-zinc-900/50 text-zinc-400 text-[10px] font-bold tracking-[0.3em] uppercase">
+                    <span class="size-2 rounded-full bg-primary animate-pulse"></span>
+                    Feb 17-18, 2026 • Live Event
+                </div>
+                <div class="space-y-4">
+                    <h1 class="text-6xl md:text-8xl font-black tracking-tighter uppercase leading-[0.9]">
+                        AGENTX – <br /><span class="text-primary italic">AI AGENT</span> HACKATHON
+                    </h1>
+                    <p class="text-xl md:text-2xl text-zinc-400 font-light max-w-xl leading-relaxed">
+                        Build AI Agents that <span class="text-white font-medium">Think, Act, and Deliver Impact</span>.
+                    </p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start pt-4">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSe5LXsvck5on1Tha6mPrB6vWI1r_oonMO-G6y9gMgqfGesXGQ/viewform?pli=1"
+                        target="_blank"
+                        class="bg-primary text-black px-12 py-6 text-xl font-black uppercase tracking-tighter hover:bg-white transition-all shadow-[0_20px_40px_rgba(250,204,21,0.1)] inline-block">
+                        Register Now
+                    </a>
+                    <button
+                        class="border border-zinc-800 text-white px-10 py-6 text-xl font-black uppercase tracking-tighter hover:border-primary transition-all">
+                        View Details
+                    </button>
+                </div>
+            </div>
+            <div class="flex-1 flex flex-col items-center justify-center core-container">
+                <div
+                    class="relative w-[350px] h-[350px] md:w-[450px] md:h-[450px] flex items-center justify-center group">
+                    <input checked=""
+                        class="core-toggle absolute inset-0 w-full h-full opacity-0 cursor-pointer z-50 peer"
+                        id="power-toggle" type="checkbox" />
+                    <div
+                        class="core-sphere relative w-56 h-56 md:w-72 md:h-72 rounded-full border-4 metallic-finish flex items-center justify-center transition-all duration-700 z-20 overflow-hidden">
+                        <div class="core-inner w-32 h-32 rounded-full blur-2xl transition-all duration-700 ease-out">
+                        </div>
+                        <div class="absolute inset-0 opacity-10 flex items-center justify-center pointer-events-none">
+                            <span
+                                class="material-symbols-outlined text-[150px] md:text-[200px] text-white">memory</span>
+                        </div>
+                        <div
+                            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-primary rounded-full shadow-[0_0_15px_#FACC15] z-30">
+                        </div>
+                    </div>
+                    <div class="orbit-ring w-[280px] h-[280px] md:w-[350px] md:h-[350px] rotate-[15deg]"></div>
+                    <div class="orbit-ring w-[340px] h-[340px] md:w-[420px] md:h-[420px] -rotate-[35deg]"></div>
+                    <div
+                        class="absolute -top-4 -right-4 bg-black/80 border border-zinc-800 p-4 backdrop-blur-sm peer-checked:border-primary/40 transition-colors">
+                        <div class="text-[8px] font-black uppercase text-zinc-500 tracking-widest mb-1">Agent_State
+                        </div>
+                        <div class="text-[10px] font-mono peer-checked:text-primary text-zinc-700 font-bold uppercase">
+                            <span class="peer-checked:block hidden">Active_Autonomous_Mode</span>
+                            <span class="peer-checked:hidden block">Core_Standby</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 text-center">
+                    <div
+                        class="flex items-center gap-3 text-primary text-[10px] font-bold uppercase tracking-widest opacity-60">
+                        <span class="material-symbols-outlined text-sm">touch_app</span>
+                        Toggle System Core
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-32 bg-primary text-black border-y border-black/5" id="about">
+            <div class="max-w-7xl mx-auto px-8">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <h2 class="section-heading">The <span class="italic">Vision</span></h2>
+                        <p class="text-xl text-zinc-900 leading-relaxed mb-8">
+                            Turn your ideas into autonomous AI agents that don't just process data but solve real-world
+                            problems. AGENTX is the frontier where engineering meets intelligence, pushing the
+                            boundaries of what autonomous systems can achieve.
+                        </p>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="border-l-2 border-black pl-6 py-2">
+                                <div class="text-3xl font-black text-black">Feb 17-18</div>
+                                <div class="text-xs font-bold uppercase tracking-widest text-zinc-800">Event Date 2026
+                                </div>
+                            </div>
+                            <div class="border-l-2 border-black pl-6 py-2">
+                                <div class="text-3xl font-black text-black">SNS College</div>
+                                <div class="text-xs font-bold uppercase tracking-widest text-zinc-800">Venue Location
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="card-base">
+                            <h4 class="text-primary font-black uppercase tracking-widest mb-4">Eligibility</h4>
+                            <ul class="space-y-4">
+                                <li class="flex items-start gap-4">
+                                    <span class="material-symbols-outlined text-primary">check_circle</span>
+                                    <span class="text-sm font-medium text-zinc-300">Open to all college students
+                                        (Undergraduate &amp; Postgraduate).</span>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <span class="material-symbols-outlined text-primary">check_circle</span>
+                                    <span class="text-sm font-medium text-zinc-300">Team size: 2–4 members per
+                                        team.</span>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <span class="material-symbols-outlined text-primary">check_circle</span>
+                                    <span class="text-sm font-medium text-zinc-300">Multidisciplinary teams are highly
+                                        encouraged.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-32 bg-background-dark" id="themes">
+            <div class="max-w-7xl mx-auto px-8 text-center mb-20">
+                <h2 class="section-heading">Innovation <span class="accent-text">Verticals</span></h2>
+                <p class="text-zinc-500 uppercase tracking-[0.3em] font-bold text-xs">Choose Your Agent's Mission</p>
+            </div>
+            <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-3 gap-8">
+                <div class="card-base text-center group">
+                    <span
+                        class="material-symbols-outlined text-5xl text-primary/40 group-hover:text-primary transition-colors mb-6">eco</span>
+                    <h4 class="text-xl font-black uppercase mb-2">Sustainability</h4>
+                    <p class="text-zinc-500 text-sm">Agents for climate action and resource optimization.</p>
+                </div>
+                <div class="card-base text-center group">
+                    <span
+                        class="material-symbols-outlined text-5xl text-primary/40 group-hover:text-primary transition-colors mb-6">health_and_safety</span>
+                    <h4 class="text-xl font-black uppercase mb-2">Healthcare</h4>
+                    <p class="text-zinc-500 text-sm">Autonomous diagnostics and patient care systems.</p>
+                </div>
+                <div class="card-base text-center group">
+                    <span
+                        class="material-symbols-outlined text-5xl text-primary/40 group-hover:text-primary transition-colors mb-6">school</span>
+                    <h4 class="text-xl font-black uppercase mb-2">EdTech</h4>
+                    <p class="text-zinc-500 text-sm">Personalized learning and administrative agents.</p>
+                </div>
+                <div class="card-base text-center group">
+                    <span
+                        class="material-symbols-outlined text-5xl text-primary/40 group-hover:text-primary transition-colors mb-6">apartment</span>
+                    <h4 class="text-xl font-black uppercase mb-2">Smart Cities</h4>
+                    <p class="text-zinc-500 text-sm">Intelligent infrastructure and urban management.</p>
+                </div>
+                <div class="card-base text-center group">
+                    <span
+                        class="material-symbols-outlined text-5xl text-primary/40 group-hover:text-primary transition-colors mb-6">hub</span>
+                    <h4 class="text-xl font-black uppercase mb-2">AI/IoT</h4>
+                    <p class="text-zinc-500 text-sm">Bridging physical hardware with autonomous logic.</p>
+                </div>
+                <div class="card-base text-center group">
+                    <span
+                        class="material-symbols-outlined text-5xl text-primary/40 group-hover:text-primary transition-colors mb-6">diversity_3</span>
+                    <h4 class="text-xl font-black uppercase mb-2">Social Innovation</h4>
+                    <p class="text-zinc-500 text-sm">Tech-driven solutions for community empowerment.</p>
+                </div>
+            </div>
+        </section>
+        <section class="py-24 bg-primary text-black">
+            <div class="max-w-7xl mx-auto px-8">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-12">
+                    <div>
+                        <h2 class="text-6xl font-black uppercase tracking-tighter">Grand <br />Rewards.</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full md:w-auto">
+                        <div class="bg-black/5 p-6 border-l-4 border-black">
+                            <div class="text-3xl font-black">Internship</div>
+                            <div class="text-xs font-bold uppercase tracking-widest">Industry Opportunities</div>
+                        </div>
+                        <div class="bg-black/5 p-6 border-l-4 border-black">
+                            <div class="text-3xl font-black">Certificates</div>
+                            <div class="text-xs font-bold uppercase tracking-widest">Official Recognition</div>
+                        </div>
+                        <div class="bg-black/5 p-6 border-l-4 border-black">
+                            <div class="text-3xl font-black">Mentorship</div>
+                            <div class="text-xs font-bold uppercase tracking-widest">Expert Guidance</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-32 bg-surface-dark" id="phases">
+            <div class="max-w-7xl mx-auto px-8">
+                <h2 class="section-heading mb-16">Hackathon <span class="accent-text">Timeline</span></h2>
+                <div class="space-y-4">
+                    <div class="card-base flex flex-col md:flex-row gap-8 items-start">
+                        <div
+                            class="bg-primary text-black w-16 h-16 flex-shrink-0 flex items-center justify-center text-2xl font-black">
+                            01</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="text-2xl font-black uppercase">Registration</h4>
+                                <span class="text-primary font-mono text-sm">Ongoing</span>
+                            </div>
+                            <p class="text-zinc-400">Join the waitlist and assemble your team of agent architects.</p>
+                        </div>
+                    </div>
+                    <div class="card-base flex flex-col md:flex-row gap-8 items-start">
+                        <div
+                            class="bg-zinc-800 text-white w-16 h-16 flex-shrink-0 flex items-center justify-center text-2xl font-black">
+                            02</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="text-2xl font-black uppercase">Idea Submission</h4>
+                                <span class="text-zinc-500 font-mono text-sm">Pre-Event</span>
+                            </div>
+                            <p class="text-zinc-400">Submit your concept and technical architecture for the proposed AI
+                                agent.</p>
+                        </div>
+                    </div>
+                    <div class="card-base flex flex-col md:flex-row gap-8 items-start">
+                        <div
+                            class="bg-zinc-800 text-white w-16 h-16 flex-shrink-0 flex items-center justify-center text-2xl font-black">
+                            03</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="text-2xl font-black uppercase">Design &amp; Development</h4>
+                                <span class="text-zinc-500 font-mono text-sm">48 Hours</span>
+                            </div>
+                            <p class="text-zinc-400">Intensive building phase. Create, test, and refine your autonomous
+                                logic.</p>
+                        </div>
+                    </div>
+                    <div class="card-base flex flex-col md:flex-row gap-8 items-start">
+                        <div
+                            class="bg-zinc-800 text-white w-16 h-16 flex-shrink-0 flex items-center justify-center text-2xl font-black">
+                            04</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="text-2xl font-black uppercase">Technical Review</h4>
+                                <span class="text-zinc-500 font-mono text-sm">Final Day</span>
+                            </div>
+                            <p class="text-zinc-400">Code audit and performance stress-testing by industry experts.</p>
+                        </div>
+                    </div>
+                    <div class="card-base flex flex-col md:flex-row gap-8 items-start">
+                        <div
+                            class="bg-zinc-800 text-white w-16 h-16 flex-shrink-0 flex items-center justify-center text-2xl font-black">
+                            05</div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="text-2xl font-black uppercase">Final Pitch &amp; Demo</h4>
+                                <span class="text-zinc-500 font-mono text-sm">Presentation</span>
+                            </div>
+                            <p class="text-zinc-400">Live demonstration of your agent's impact and autonomous
+                                capabilities.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-32 bg-primary text-black border-t border-black/5" id="stack">
+            <div class="max-w-7xl mx-auto px-8">
+                <h2 class="section-heading mb-16">Tech <span class="italic">Guidelines</span></h2>
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="card-base border-black/10 bg-surface-dark text-white">
+                        <h4 class="text-2xl font-black uppercase mb-8 flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary">terminal</span> Allowed Stack
+                        </h4>
+                        <ul class="grid grid-cols-2 gap-4">
+                            <li
+                                class="bg-black/40 p-3 text-xs font-bold uppercase tracking-widest border border-white/5">
+                                Python</li>
+                            <li
+                                class="bg-black/40 p-3 text-xs font-bold uppercase tracking-widest border border-white/5">
+                                LLM APIs</li>
+                            <li
+                                class="bg-black/40 p-3 text-xs font-bold uppercase tracking-widest border border-white/5">
+                                Vector DBs</li>
+                            <li
+                                class="bg-black/40 p-3 text-xs font-bold uppercase tracking-widest border border-white/5">
+                                LangChain</li>
+                            <li
+                                class="bg-black/40 p-3 text-xs font-bold uppercase tracking-widest border border-white/5">
+                                AutoGPT</li>
+                            <li
+                                class="bg-black/40 p-3 text-xs font-bold uppercase tracking-widest border border-white/5">
+                                Open Source Models</li>
+                        </ul>
+                    </div>
+                    <div class="card-base border-red-500/20 bg-surface-dark text-white">
+                        <h4 class="text-2xl font-black uppercase mb-8 flex items-center gap-3">
+                            <span class="material-symbols-outlined text-red-500">block</span> Disallowed
+                        </h4>
+                        <ul class="grid grid-cols-1 gap-4">
+                            <li
+                                class="bg-black/40 p-3 text-xs font-bold uppercase tracking-widest border border-white/5">
+                                Hardcoded Decision Trees</li>
+                            <li
+                                class="bg-black/40 p-3 text-xs font-bold uppercase tracking-widest border border-white/5">
+                                Simple Rule-based Chatbots</li>
+                            <li
+                                class="bg-black/40 p-3 text-xs font-bold uppercase tracking-widest border border-white/5">
+                                Non-AI Static Solutions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-32 bg-surface-dark border-t border-white/5">
+            <div class="max-w-7xl mx-auto px-8">
+                <div class="grid lg:grid-cols-2 gap-24">
+                    <div>
+                        <h2 class="section-heading">Contact <span class="accent-text">Support</span></h2>
+                        <p class="text-zinc-500 mb-12">Reach out to our organizing committee for technical queries or
+                            logistics.</p>
+                        <div class="space-y-8">
+                            <div class="flex items-center gap-6">
+                                <div class="size-12 rounded-full bg-zinc-800 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-primary">person</span>
+                                </div>
+                                <div>
+                                    <div class="text-lg font-bold">Dr. Tharankumar</div>
+                                    <div class="text-[10px] text-zinc-500 uppercase tracking-widest">Faculty Coordinator
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-6">
+                                <div class="size-12 rounded-full bg-zinc-800 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-primary">person</span>
+                                </div>
+                                <div>
+                                    <div class="text-lg font-bold">Ms. M. Bhuvaneswari</div>
+                                    <div class="text-[10px] text-zinc-500 uppercase tracking-widest">Event Lead</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Quick Registration box removed -->
+            </div>
+            </div>
+            </div>
+        </section>
+    </main>
+    <footer class="py-24 bg-background-dark border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="grid md:grid-cols-3 gap-16 mb-24">
+                <div class="col-span-1">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="size-10 bg-primary flex items-center justify-center">
+                            <span class="material-symbols-outlined text-black font-black text-2xl">psychology</span>
+                        </div>
+                        <h2 class="text-2xl font-black tracking-[0.2em]">AGENTX</h2>
+                    </div>
+                    <p class="text-zinc-600 text-xs font-bold uppercase tracking-widest leading-loose">
+                        Feb 17-18, 2026 • SNS College of Technology
+                    </p>
+                    <p class="text-zinc-500 text-sm mt-4 italic">
+                        "Build AI Agents that Think, Act, and Deliver Impact"
+                    </p>
+                </div>
+                <div>
+                    <h5 class="text-primary text-[10px] font-black uppercase tracking-[0.4em] mb-8">Quick Links</h5>
+                    <ul class="space-y-4 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                        <li><a class="hover:text-primary transition-colors" href="#">Guidelines</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Venue Map</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-primary text-[10px] font-black uppercase tracking-[0.4em] mb-8">Status</h5>
+                    <ul class="space-y-4 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                        <li class="flex items-center gap-3"><span class="size-2 bg-primary rounded-full"></span>
+                            Registration: Open</li>
+                        <li class="flex items-center gap-3"><span class="size-2 bg-zinc-800 rounded-full"></span>
+                            Submissions: Not Started</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 pt-12 border-t border-zinc-900">
+                <div class="text-[10px] font-mono text-zinc-700 tracking-[0.2em] uppercase">© 2026 AGENTX AI Hackathon •
+                    SNSCT</div>
+                <div class="text-[10px] font-mono text-zinc-700 tracking-[0.2em] uppercase">Built for the Autonomous
+                    Future</div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
