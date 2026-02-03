@@ -90,10 +90,45 @@
         .glow-animate {
             animation: glow-pulse 2s ease-in-out infinite;
         }
+        #cursor-glow {
+            position: fixed;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            background: radial-gradient(circle, rgba(250, 204, 21, 0.15) 0%, rgba(250, 204, 21, 0.05) 40%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s ease;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        @keyframes float-reverse {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(20px) rotate(-5deg); }
+        }
+        @keyframes rotate-slow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .bg-icon {
+            position: absolute;
+            opacity: 0.08;
+            color: #FACC15;
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(0.5px);
+        }
+        .bg-icon.float-1 { animation: float 6s ease-in-out infinite; }
+        .bg-icon.float-2 { animation: float-reverse 8s ease-in-out infinite; }
+        .bg-icon.rotate-only { animation: rotate-slow 20s linear infinite; }
     </style>
 </head>
 
 <body class="transition-colors duration-500">
+    <div id="cursor-glow"></div>
     <div class="fixed inset-0 pointer-events-none z-0 hero-pattern"></div>
     <header class="sticky top-0 z-50 w-full border-b border-white/10 bg-white/5 backdrop-blur-xl">
         <div class="max-w-7xl mx-auto px-8 h-24 flex items-center justify-between">
@@ -108,6 +143,8 @@
                 <a class="text-sm font-bold uppercase tracking-[0.2em] text-white hover:text-primary transition-colors"
                     href="#themes">Themes</a>
                 <a class="text-sm font-bold uppercase tracking-[0.2em] text-white hover:text-primary transition-colors"
+                    href="#eligibility">Eligibility</a>
+                <a class="text-sm font-bold uppercase tracking-[0.2em] text-white hover:text-primary transition-colors"
                     href="#phases">Phases</a>
                 <a class="text-sm font-bold uppercase tracking-[0.2em] text-white hover:text-primary transition-colors"
                     href="#stack">Stack</a>
@@ -121,7 +158,13 @@
     </header>
     <main class="relative">
         <section
-            class="min-h-[90vh] flex flex-col lg:flex-row items-center justify-center max-w-7xl mx-auto px-8 gap-12 py-12">
+            class="min-h-[90vh] flex flex-col lg:flex-row items-center justify-center max-w-7xl mx-auto px-8 gap-12 py-12 relative overflow-hidden">
+            <!-- Background Decorations -->
+            <span class="material-symbols-outlined bg-icon float-1 text-5xl top-[10%] left-[5%]">rocket_launch</span>
+            <span class="material-symbols-outlined bg-icon float-2 text-7xl bottom-[15%] right-[10%]">smart_toy</span>
+            <span class="material-symbols-outlined bg-icon rotate-only text-6xl top-[40%] right-[5%]">settings</span>
+            <span
+                class="material-symbols-outlined bg-icon float-1 text-4xl top-[70%] left-[15%]">precision_manufacturing</span>
             <div class="flex-1 space-y-8 z-10 text-center lg:text-left">
                 <div
                     class="inline-flex items-center gap-3 px-6 py-3 border border-zinc-800 bg-zinc-900/50 text-zinc-400 text-sm font-bold tracking-[0.3em] uppercase">
@@ -130,7 +173,7 @@
                 </div>
                 <div class="space-y-4">
                     <h1 class="text-6xl md:text-8xl font-black tracking-tighter uppercase leading-[0.9]">
-                        AGENTX <br /><span class="text-primary italic">AI AGENT</span> HACKATHON
+                        AGENTX <br /><span class="text-primary italic">AI - AGENT</span> HACKATHON
                     </h1>
                     <p class="text-xl md:text-2xl text-zinc-400 font-light max-w-xl leading-relaxed">
                         Build AI Agents that <span class="text-white font-medium">Think, Act, and Deliver Impact</span>.
@@ -241,9 +284,35 @@
 
                 updateCountdown();
                 setInterval(updateCountdown, 1000);
+
+                // Cursor glow effect
+                const cursorGlow = document.getElementById('cursor-glow');
+
+                document.addEventListener('mousemove', (e) => {
+                    cursorGlow.style.left = e.clientX + 'px';
+                    cursorGlow.style.top = e.clientY + 'px';
+                });
+
+                // Hide glow when mouse leaves the window
+                document.addEventListener('mouseleave', () => {
+                    cursorGlow.style.opacity = '0';
+                });
+
+                document.addEventListener('mouseenter', () => {
+                    cursorGlow.style.opacity = '1';
+                });
             });
         </script>
-        <section class="py-32 bg-primary text-black border-y border-black/5" id="about">
+        <section class="py-32 bg-primary text-black border-y border-black/5 relative overflow-hidden" id="about">
+            <!-- Background Decorations -->
+            <span
+                class="material-symbols-outlined bg-icon float-2 text-black/20 text-8xl top-5 right-10">settings</span>
+            <span
+                class="material-symbols-outlined bg-icon float-1 text-black/20 text-6xl bottom-10 left-10">rocket_launch</span>
+            <span
+                class="material-symbols-outlined bg-icon rotate-only text-black/15 text-7xl top-1/2 left-1/4">settings</span>
+            <span
+                class="material-symbols-outlined bg-icon float-2 text-black/20 text-5xl top-20 left-1/2">smart_toy</span>
             <div class="max-w-7xl mx-auto px-8">
                 <div class="grid lg:grid-cols-2 gap-16 items-center">
                     <div>
@@ -291,51 +360,147 @@
                 </div>
             </div>
         </section>
-        <section class="py-32 bg-background-dark" id="themes">
+        <section class="py-32 bg-background-dark relative overflow-hidden" id="themes">
+            <!-- Background Decorations -->
+            <span class="material-symbols-outlined bg-icon float-1 text-6xl top-10 left-[40%]">rocket_launch</span>
+            <span class="material-symbols-outlined bg-icon rotate-only text-5xl bottom-10 right-[30%]">settings</span>
+            <span
+                class="material-symbols-outlined bg-icon float-2 text-7xl top-1/2 left-5 opacity-[0.05]">smart_toy</span>
+            <span
+                class="material-symbols-outlined bg-icon float-1 text-4xl bottom-1/4 right-10">precision_manufacturing</span>
             <div class="max-w-7xl mx-auto px-8 text-center mb-20">
                 <h2 class="section-heading">Innovation <span class="accent-text">Verticals</span></h2>
                 <p class="text-zinc-500 uppercase tracking-[0.3em] font-bold text-xs">Choose Your Agent's Mission</p>
             </div>
             <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-3 gap-8">
-                <div class="card-base text-center group">
-                    <span
-                        class="material-symbols-outlined text-5xl text-primary/40 group-hover:text-primary transition-colors mb-6">eco</span>
-                    <h4 class="text-xl font-black uppercase mb-2">Sustainability</h4>
-                    <p class="text-zinc-500 text-sm">Agents for climate action and resource optimization.</p>
+                <div
+                    class="relative overflow-hidden bg-gradient-to-br from-zinc-900 to-surface-dark border border-zinc-800 p-8 text-center group hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(250,204,21,0.15)]">
+                    <div
+                        class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div class="relative z-10">
+                        <span
+                            class="material-symbols-outlined text-6xl text-primary/60 group-hover:text-primary transition-all duration-500 mb-6 inline-block group-hover:rotate-12 group-hover:scale-110">eco</span>
+                        <h4 class="text-xl font-black uppercase mb-3 text-white">Sustainability</h4>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Agents for climate action and resource
+                            optimization.</p>
+                    </div>
                 </div>
-                <div class="card-base text-center group">
-                    <span
-                        class="material-symbols-outlined text-5xl text-primary/40 group-hover:text-primary transition-colors mb-6">health_and_safety</span>
-                    <h4 class="text-xl font-black uppercase mb-2">Healthcare</h4>
-                    <p class="text-zinc-500 text-sm">Autonomous diagnostics and patient care systems.</p>
+                <div
+                    class="relative overflow-hidden bg-gradient-to-br from-zinc-900 to-surface-dark border border-zinc-800 p-8 text-center group hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(250,204,21,0.15)]">
+                    <div
+                        class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div class="relative z-10">
+                        <span
+                            class="material-symbols-outlined text-6xl text-primary/60 group-hover:text-primary transition-all duration-500 mb-6 inline-block group-hover:rotate-12 group-hover:scale-110">health_and_safety</span>
+                        <h4 class="text-xl font-black uppercase mb-3 text-white">Healthcare</h4>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Autonomous diagnostics and patient care
+                            systems.</p>
+                    </div>
                 </div>
-                <div class="card-base text-center group">
-                    <span
-                        class="material-symbols-outlined text-5xl text-primary/40 group-hover:text-primary transition-colors mb-6">school</span>
-                    <h4 class="text-xl font-black uppercase mb-2">EdTech</h4>
-                    <p class="text-zinc-500 text-sm">Personalized learning and administrative agents.</p>
+                <div
+                    class="relative overflow-hidden bg-gradient-to-br from-zinc-900 to-surface-dark border border-zinc-800 p-8 text-center group hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(250,204,21,0.15)]">
+                    <div
+                        class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div class="relative z-10">
+                        <span
+                            class="material-symbols-outlined text-6xl text-primary/60 group-hover:text-primary transition-all duration-500 mb-6 inline-block group-hover:rotate-12 group-hover:scale-110">school</span>
+                        <h4 class="text-xl font-black uppercase mb-3 text-white">EdTech</h4>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Personalized learning and administrative
+                            agents.</p>
+                    </div>
                 </div>
-                <div class="card-base text-center group">
-                    <span
-                        class="material-symbols-outlined text-5xl text-primary/40 group-hover:text-primary transition-colors mb-6">apartment</span>
-                    <h4 class="text-xl font-black uppercase mb-2">Smart Cities</h4>
-                    <p class="text-zinc-500 text-sm">Intelligent infrastructure and urban management.</p>
+                <div
+                    class="relative overflow-hidden bg-gradient-to-br from-zinc-900 to-surface-dark border border-zinc-800 p-8 text-center group hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(250,204,21,0.15)]">
+                    <div
+                        class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div class="relative z-10">
+                        <span
+                            class="material-symbols-outlined text-6xl text-primary/60 group-hover:text-primary transition-all duration-500 mb-6 inline-block group-hover:rotate-12 group-hover:scale-110">apartment</span>
+                        <h4 class="text-xl font-black uppercase mb-3 text-white">Smart Cities</h4>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Intelligent infrastructure and urban
+                            management.</p>
+                    </div>
                 </div>
-                <div class="card-base text-center group">
-                    <span
-                        class="material-symbols-outlined text-5xl text-primary/40 group-hover:text-primary transition-colors mb-6">hub</span>
-                    <h4 class="text-xl font-black uppercase mb-2">AI/IoT</h4>
-                    <p class="text-zinc-500 text-sm">Bridging physical hardware with autonomous logic.</p>
+                <div
+                    class="relative overflow-hidden bg-gradient-to-br from-zinc-900 to-surface-dark border border-zinc-800 p-8 text-center group hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(250,204,21,0.15)]">
+                    <div
+                        class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div class="relative z-10">
+                        <span
+                            class="material-symbols-outlined text-6xl text-primary/60 group-hover:text-primary transition-all duration-500 mb-6 inline-block group-hover:rotate-12 group-hover:scale-110">hub</span>
+                        <h4 class="text-xl font-black uppercase mb-3 text-white">AI/IoT</h4>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Bridging physical hardware with autonomous
+                            logic.</p>
+                    </div>
                 </div>
-                <div class="card-base text-center group">
-                    <span
-                        class="material-symbols-outlined text-5xl text-primary/40 group-hover:text-primary transition-colors mb-6">diversity_3</span>
-                    <h4 class="text-xl font-black uppercase mb-2">Social Innovation</h4>
-                    <p class="text-zinc-500 text-sm">Tech-driven solutions for community empowerment.</p>
+                <div
+                    class="relative overflow-hidden bg-gradient-to-br from-zinc-900 to-surface-dark border border-zinc-800 p-8 text-center group hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(250,204,21,0.15)]">
+                    <div
+                        class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div class="relative z-10">
+                        <span
+                            class="material-symbols-outlined text-6xl text-primary/60 group-hover:text-primary transition-all duration-500 mb-6 inline-block group-hover:rotate-12 group-hover:scale-110">diversity_3</span>
+                        <h4 class="text-xl font-black uppercase mb-3 text-white">Social Innovation</h4>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Tech-driven solutions for community
+                            empowerment.</p>
+                    </div>
                 </div>
             </div>
         </section>
-        <section class="py-24 bg-primary text-black">
+        <section class="py-32 bg-surface-dark border-y border-white/5 relative overflow-hidden" id="eligibility">
+            <!-- Background Decorations -->
+            <span class="material-symbols-outlined bg-icon float-1 text-5xl top-10 right-20">rocket_launch</span>
+            <span class="material-symbols-outlined bg-icon rotate-only text-6xl bottom-10 left-10">settings</span>
+            <span class="material-symbols-outlined bg-icon float-2 text-4xl top-1/2 left-1/2">smart_toy</span>
+            <div class="max-w-7xl mx-auto px-8">
+                <div class="text-center mb-16">
+                    <h2 class="section-heading">Eligibility <span class="accent-text">Criteria</span></h2>
+                    <p class="text-zinc-500 uppercase tracking-[0.3em] font-bold text-xs">Who Can Participate</p>
+                </div>
+                <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-8">
+                    <div
+                        class="bg-gradient-to-br from-zinc-900 to-surface-dark border-2 border-primary/30 p-8 text-center hover:border-primary/60 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(250,204,21,0.2)]">
+                        <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="material-symbols-outlined text-3xl text-primary">school</span>
+                        </div>
+                        <h4 class="text-lg font-black uppercase mb-3 text-white">Final Year Cohort</h4>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Open to final year students from all
+                            disciplines</p>
+                    </div>
+                    <div
+                        class="bg-gradient-to-br from-zinc-900 to-surface-dark border-2 border-primary/30 p-8 text-center hover:border-primary/60 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(250,204,21,0.2)]">
+                        <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="material-symbols-outlined text-3xl text-primary">groups</span>
+                        </div>
+                        <h4 class="text-lg font-black uppercase mb-3 text-white">Team Size</h4>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Maximum 3 students per team</p>
+                    </div>
+                    <div
+                        class="bg-gradient-to-br from-zinc-900 to-surface-dark border-2 border-primary/30 p-8 text-center hover:border-primary/60 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(250,204,21,0.2)]">
+                        <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="material-symbols-outlined text-3xl text-primary">diversity_3</span>
+                        </div>
+                        <h4 class="text-lg font-black uppercase mb-3 text-white">Inter-disciplinary</h4>
+                        <p class="text-zinc-400 text-sm leading-relaxed">Cross-discipline teams are permitted and
+                            encouraged</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-24 bg-primary text-black relative overflow-hidden">
+            <!-- Background Decorations -->
+            <span
+                class="material-symbols-outlined bg-icon float-1 text-black/20 text-7xl top-5 left-1/4">rocket_launch</span>
+            <span
+                class="material-symbols-outlined bg-icon float-2 text-black/20 text-8xl bottom-5 right-1/4">settings</span>
+            <span
+                class="material-symbols-outlined bg-icon rotate-only text-black/15 text-6xl top-1/2 left-10">smart_toy</span>
             <div class="max-w-7xl mx-auto px-8">
                 <div class="flex flex-col md:flex-row justify-between items-center gap-12">
                     <div>
@@ -358,7 +523,12 @@
                 </div>
             </div>
         </section>
-        <section class="py-32 bg-surface-dark" id="phases">
+        <section class="py-32 bg-surface-dark relative overflow-hidden" id="phases">
+            <!-- Background Decorations -->
+            <span class="material-symbols-outlined bg-icon float-1 text-6xl top-20 right-10">rocket_launch</span>
+            <span class="material-symbols-outlined bg-icon float-2 text-5xl bottom-20 left-10">settings</span>
+            <span
+                class="material-symbols-outlined bg-icon rotate-only text-7xl top-1/2 left-1/2 opacity-[0.04]">smart_toy</span>
             <div class="max-w-7xl mx-auto px-8">
                 <h2 class="section-heading mb-16">Hackathon <span class="accent-text">Timeline</span></h2>
                 <div class="space-y-4">
@@ -428,7 +598,14 @@
                 </div>
             </div>
         </section>
-        <section class="py-32 bg-primary text-black border-t border-black/5" id="stack">
+        <section class="py-32 bg-primary text-black border-t border-black/5 relative overflow-hidden" id="stack">
+            <!-- Background Decorations -->
+            <span
+                class="material-symbols-outlined bg-icon float-2 text-black/20 text-8xl top-0 right-1/4">settings</span>
+            <span
+                class="material-symbols-outlined bg-icon float-1 text-black/20 text-6xl bottom-0 left-1/4">rocket_launch</span>
+            <span
+                class="material-symbols-outlined bg-icon rotate-only text-black/15 text-7xl top-1/2 left-10">smart_toy</span>
             <div class="max-w-7xl mx-auto px-8">
                 <h2 class="section-heading mb-16">Tech <span class="italic">Guidelines</span></h2>
                 <div class="grid md:grid-cols-2 gap-12">
@@ -476,7 +653,11 @@
                 </div>
             </div>
         </section>
-        <section class="py-32 bg-surface-dark border-t border-white/5">
+        <section class="py-32 bg-surface-dark border-t border-white/5 relative overflow-hidden" id="contact">
+            <!-- Background Decorations -->
+            <span class="material-symbols-outlined bg-icon float-1 text-7xl top-10 right-10">rocket_launch</span>
+            <span class="material-symbols-outlined bg-icon float-2 text-6xl bottom-10 left-10">settings</span>
+            <span class="material-symbols-outlined bg-icon rotate-only text-5xl top-1/2 right-1/3">smart_toy</span>
             <div class="max-w-7xl mx-auto px-8">
                 <div class="grid lg:grid-cols-2 gap-24">
                     <div>
@@ -516,11 +697,10 @@
         <div class="max-w-7xl mx-auto px-8">
             <div class="grid md:grid-cols-3 gap-16 mb-24">
                 <div class="col-span-1">
-                    <div class="flex items-center gap-4 mb-8">
-                        <div class="size-10 bg-primary flex items-center justify-center">
-                            <span class="material-symbols-outlined text-black font-black text-2xl">psychology</span>
-                        </div>
-                        <h2 class="text-2xl font-black tracking-[0.2em]">AGENTX</h2>
+                    <div class="flex items-center gap-6 mb-8">
+                        <img src="./img/logo_college.png" alt="College Logo" class="h-16 w-auto object-contain">
+                        <div class="h-10 w-px bg-white/20"></div>
+                        <img src="./img/logo_sns.png" alt="SNS Logo" class="h-14 w-auto object-contain">
                     </div>
                     <p class="text-zinc-600 text-xs font-bold uppercase tracking-widest leading-loose">
                         Feb 17-18, 2026 • SNS College of Technology
