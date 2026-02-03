@@ -170,12 +170,20 @@
                 <div class="mt-8 text-center">
                     <div
                         class="flex items-center gap-3 text-primary text-[10px] font-bold uppercase tracking-widest opacity-60">
-                        <span class="material-symbols-outlined text-sm">touch_app</span>
-                        Toggle System Core
+                        <span class="material-symbols-outlined text-sm">autorenew</span>
+                        System Core: Auto-Cycle
                     </div>
                 </div>
             </div>
         </section>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const toggle = document.getElementById('power-toggle');
+                setInterval(() => {
+                    toggle.checked = !toggle.checked;
+                }, 2000); // Toggles every 2 seconds
+            });
+        </script>
         <section class="py-32 bg-primary text-black border-y border-black/5" id="about">
             <div class="max-w-7xl mx-auto px-8">
                 <div class="grid lg:grid-cols-2 gap-16 items-center">
